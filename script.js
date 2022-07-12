@@ -50,6 +50,20 @@ function showResults(){
     resultContainer.innerHTML = numCorrect + 'out of' + myQuestion.length;
 }
 
+myQuestion.forEach( (currentQuestion,  questionNumber) => {
+    const answerContainer = answerContainer[questionNumber];
+    const selector = `input[name=question${questionNumber}]:checked`;
+    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    if(userAnswer ===currentQuestion.correctAnswe) {
+        numCorrect++;
+
+        answerContainer[questionNumber].style.color = 'lightgreen';
+    }
+    else {
+        answerContainer[questionNumber].style.color = 'red';
+    }
+});
 
 const myQuestion = [
     {
