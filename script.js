@@ -2,6 +2,10 @@ const quizContainer = document.getElementById('quiz');
 const resultContainer = document.getElementById('result');
 const submitButton = document.getElementById('submit');
 
+const answerContainer = answerContainers[questionNumber];
+const selector = `input[name=question${questionNumber}]:checked`;
+const userAnswer = (answerContainer.querySelector(selector) || []).value;
+
 function buildQuiz() {
     const output = [];
 
@@ -64,6 +68,21 @@ myQuestion.forEach( (currentQuestion,  questionNumber) => {
         answerContainer[questionNumber].style.color = 'red';
     }
 });
+
+if(userAnswer === currentQuestion.correctAnswe){
+    numCorrect++;
+
+    answerContainer[questionNumber].style.color = 'lightgreen';
+}
+else {
+    answerContainer[questionNumber].style.color = 'red';
+}
+
+resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+
+(function(){
+    
+})
 
 const myQuestion = [
     {
